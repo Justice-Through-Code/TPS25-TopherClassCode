@@ -1,0 +1,16 @@
+Year,Country,Trade_Partner,Export_Value,Import_Value,Trade_Type
+1850,Britain,India,12500000,8750000,Colonial
+1850,Britain,China,8200000,15600000,International
+1850,France,Algeria,3400000,1200000,Colonial
+1860,Britain,India,15600000,11200000,Colonial
+1860,Britain,China,9800000,18900000,International
+1860,France,Algeria,4100000,1800000,Colonial
+1860,USA,Britain,18500000,22100000,International
+1870,Britain,India,19200000,14500000,Colonial
+1870,Britain,China,11400000,21200000,International
+1870,France,Algeria,5200000,2400000,Colonial
+1870,USA,Britain,25600000,31200000,International
+1870,USA,France,8900000,12300000,International
+1880,Britain,India,24800000,18900000,Colonial
+1880,Britain,China,13600000,24500000,International
+1880,Germany,USA,15200000,18700000,International

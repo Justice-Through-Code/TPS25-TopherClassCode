@@ -1,0 +1,257 @@
+{
+  "metadata": {
+    "total_events": 20,
+    "time_span": "476-1789",
+    "analysis_date": "2025-05-23 15:34:58"
+  },
+  "events": [
+    {
+      "name": "Fall of Western Roman Empire",
+      "year": 476,
+      "type": "Political",
+      "location": "Rome",
+      "significance": 9,
+      "participants": [
+        "Odoacer",
+        "Romulus Augustulus"
+      ]
+    },
+    {
+      "name": "Battle of Tours",
+      "year": 732,
+      "type": "Military",
+      "location": "France",
+      "significance": 8,
+      "participants": [
+        "Charles Martel",
+        "Abdul Rahman Al Ghafiqi"
+      ]
+    },
+    {
+      "name": "Charlemagne Crowned Emperor",
+      "year": 800,
+      "type": "Political",
+      "location": "Rome",
+      "significance": 8,
+      "participants": [
+        "Charlemagne",
+        "Pope Leo III"
+      ]
+    },
+    {
+      "name": "Norman Conquest of England",
+      "year": 1066,
+      "type": "Military",
+      "location": "England",
+      "significance": 9,
+      "participants": [
+        "William the Conqueror",
+        "Harold Godwinson"
+      ]
+    },
+    {
+      "name": "First Crusade Begins",
+      "year": 1096,
+      "type": "Religious",
+      "location": "Europe",
+      "significance": 7,
+      "participants": [
+        "Pope Urban II",
+        "Peter the Hermit"
+      ]
+    },
+    {
+      "name": "Magna Carta Signed",
+      "year": 1215,
+      "type": "Political",
+      "location": "England",
+      "significance": 9,
+      "participants": [
+        "King John",
+        "English Barons"
+      ]
+    },
+    {
+      "name": "Black Death Begins",
+      "year": 1347,
+      "type": "Social",
+      "location": "Europe",
+      "significance": 10,
+      "participants": [
+        "Genoese merchants",
+        "European population"
+      ]
+    },
+    {
+      "name": "Fall of Constantinople",
+      "year": 1453,
+      "type": "Military",
+      "location": "Constantinople",
+      "significance": 9,
+      "participants": [
+        "Mehmed II",
+        "Constantine XI"
+      ]
+    },
+    {
+      "name": "Columbus Reaches Americas",
+      "year": 1492,
+      "type": "Exploration",
+      "location": "Caribbean",
+      "significance": 10,
+      "participants": [
+        "Christopher Columbus",
+        "Spanish Crown"
+      ]
+    },
+    {
+      "name": "Protestant Reformation Begins",
+      "year": 1517,
+      "type": "Religious",
+      "location": "Germany",
+      "significance": 9,
+      "participants": [
+        "Martin Luther",
+        "Catholic Church"
+      ]
+    },
+    {
+      "name": "Spanish Armada Defeated",
+      "year": 1588,
+      "type": "Military",
+      "location": "English Channel",
+      "significance": 8,
+      "participants": [
+        "Elizabeth I",
+        "Philip II of Spain"
+      ]
+    },
+    {
+      "name": "Thirty Years' War Begins",
+      "year": 1618,
+      "type": "Military",
+      "location": "Europe",
+      "significance": 8,
+      "participants": [
+        "Ferdinand II",
+        "Frederick V"
+      ]
+    },
+    {
+      "name": "English Civil War Begins",
+      "year": 1642,
+      "type": "Political",
+      "location": "England",
+      "significance": 8,
+      "participants": [
+        "Charles I",
+        "Parliament"
+      ]
+    },
+    {
+      "name": "Peace of Westphalia",
+      "year": 1648,
+      "type": "Political",
+      "location": "Europe",
+      "significance": 8,
+      "participants": [
+        "European Powers",
+        "Holy Roman Empire"
+      ]
+    },
+    {
+      "name": "Great Fire of London",
+      "year": 1666,
+      "type": "Natural",
+      "location": "London",
+      "significance": 6,
+      "participants": [
+        "London citizens",
+        "Samuel Pepys"
+      ]
+    },
+    {
+      "name": "Glorious Revolution",
+      "year": 1688,
+      "type": "Political",
+      "location": "England",
+      "significance": 8,
+      "participants": [
+        "William of Orange",
+        "James II"
+      ]
+    },
+    {
+      "name": "War of Spanish Succession",
+      "year": 1701,
+      "type": "Military",
+      "location": "Europe",
+      "significance": 7,
+      "participants": [
+        "Louis XIV",
+        "European Coalition"
+      ]
+    },
+    {
+      "name": "Seven Years' War Begins",
+      "year": 1756,
+      "type": "Military",
+      "location": "Global",
+      "significance": 8,
+      "participants": [
+        "Frederick the Great",
+        "Maria Theresa"
+      ]
+    },
+    {
+      "name": "American Revolution Begins",
+      "year": 1775,
+      "type": "Political",
+      "location": "North America",
+      "significance": 9,
+      "participants": [
+        "George Washington",
+        "King George III"
+      ]
+    },
+    {
+      "name": "French Revolution Begins",
+      "year": 1789,
+      "type": "Political",
+      "location": "France",
+      "significance": 10,
+      "participants": [
+        "Third Estate",
+        "Louis XVI"
+      ]
+    }
+  ],
+  "statistics": {
+    "time_range": {
+      "start": 476,
+      "end": 1789
+    },
+    "total_span_years": 1313,
+    "event_types": {
+      "Political": 8,
+      "Military": 7,
+      "Religious": 2,
+      "Social": 1,
+      "Exploration": 1,
+      "Natural": 1
+    },
+    "average_significance_by_type": {
+      "Political": 8.625,
+      "Military": 8.142857142857142,
+      "Religious": 8.0,
+      "Social": 10.0,
+      "Exploration": 10.0,
+      "Natural": 6.0
+    },
+    "significance": {
+      "average": 8.4,
+      "minimum": 6,
+      "maximum": 10
+    }
+  }
+}
