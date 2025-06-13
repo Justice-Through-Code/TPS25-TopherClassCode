@@ -10,7 +10,7 @@ import tkinter as tk
 window = tk.Tk()
 
 # Configure the window
-window.title("My First GUI Application")  # Set the window title
+window.title("Our new title")  # Set the window title
 window.geometry("400x300")  # Set the window size (width x height)
 window.resizable(True, True)  # Allow the window to be resized
 
