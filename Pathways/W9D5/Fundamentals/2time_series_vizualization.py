@@ -82,7 +82,9 @@ plt.grid(True)
 plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%b'))
 plt.gca().xaxis.set_major_locator(mdates.MonthLocator())
 plt.tight_layout()
-print("\nCreated basic time series plot.")
+plt.savefig('01_basic_temperature_plot.png', dpi=300, bbox_inches='tight')
+plt.close()
+print("Created basic time series plot.")
 
 # 2. Multiple variables in subplots
 fig, axes = plt.subplots(3, 1, figsize=(12, 10), sharex=True)
@@ -91,18 +93,23 @@ fig, axes = plt.subplots(3, 1, figsize=(12, 10), sharex=True)
 axes[0].plot(weather_data.index, weather_data['temperature'], color='red')
 axes[0].set_ylabel('Temperature (°C)')
 axes[0].set_title('Temperature')
+axes[0].grid(True)
 
 # Humidity
 axes[1].plot(weather_data.index, weather_data['humidity'], color='blue')
 axes[1].set_ylabel('Humidity (%)')
 axes[1].set_title('Humidity')
+axes[1].grid(True)
 
 # Precipitation
 axes[2].plot(weather_data.index, weather_data['precipitation'], color='green')
 axes[2].set_ylabel('Precipitation (mm)')
 axes[2].set_title('Precipitation')
+axes[2].grid(True)
 
 plt.tight_layout()
+plt.savefig('02_multiple_variables.png', dpi=300, bbox_inches='tight')
+plt.close()
 print("Created multi-variable subplot visualization.")
 
 # 3. Highlighting seasonality with monthly boxplots
@@ -111,7 +118,10 @@ sns.boxplot(x=weather_data.index.month_name(), y=weather_data['temperature'])
 plt.title('Monthly Temperature Distribution')
 plt.xlabel('Month')
 plt.ylabel('Temperature (°C)')
+plt.xticks(rotation=45)
 plt.tight_layout()
+plt.savefig('03_monthly_boxplot.png', dpi=300, bbox_inches='tight')
+plt.close()
 print("Created monthly boxplot to highlight seasonality.")
 
 # 4. Dual-axis plot for related variables
@@ -123,6 +133,7 @@ ax1.set_xlabel('Date')
 ax1.set_ylabel('Temperature (°C)', color=color)
 ax1.plot(weather_data.index, weather_data['temperature'], color=color, alpha=0.7)
 ax1.tick_params(axis='y', labelcolor=color)
+ax1.grid(True)
 
 # Precipitation on right y-axis
 ax2 = ax1.twinx()
@@ -133,14 +144,18 @@ ax2.tick_params(axis='y', labelcolor=color)
 
 fig.tight_layout()
 plt.title('Temperature and Precipitation Relationship')
+plt.savefig('04_dual_axis_plot.png', dpi=300, bbox_inches='tight')
+plt.close()
 print("Created dual-axis plot for temperature and precipitation.")
 
 # 5. Correlation heatmap
 plt.figure(figsize=(10, 8))
 corr = weather_data[['temperature', 'humidity', 'pressure', 'precipitation', 'wind_speed']].corr()
-sns.heatmap(corr, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
+sns.heatmap(corr, annot=True, cmap='coolwarm', vmin=-1, vmax=1, center=0)
 plt.title('Correlation Between Weather Variables')
 plt.tight_layout()
+plt.savefig('05_correlation_heatmap.png', dpi=300, bbox_inches='tight')
+plt.close()
 print("Created correlation heatmap between weather variables.")
 
 # 6. Seasonal pattern visualization
@@ -149,19 +164,23 @@ monthly_stats = weather_data.groupby(weather_data.index.month)['temperature'].ag
 monthly_stats.index = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 plt.figure(figsize=(12, 6))
-monthly_stats['mean'].plot(marker='o', linewidth=2, label='Mean')
+monthly_stats['mean'].plot(marker='o', linewidth=2, label='Mean', color='red')
 plt.fill_between(
     monthly_stats.index,
     monthly_stats['min'],
     monthly_stats['max'],
     alpha=0.2,
-    label='Min-Max Range'
+    label='Min-Max Range',
+    color='red'
 )
 plt.title('Monthly Temperature Pattern')
 plt.ylabel('Temperature (°C)')
+plt.xlabel('Month')
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
+plt.savefig('06_seasonal_pattern.png', dpi=300, bbox_inches='tight')
+plt.close()
 print("Created seasonal pattern visualization with error ranges.")
 
 # 7. Detect anomalies and visualize them
@@ -177,7 +196,7 @@ anomalies = weather_data[
 ]
 
 plt.figure(figsize=(12, 6))
-plt.plot(weather_data.index, weather_data['temperature'], label='Temperature', linewidth=1)
+plt.plot(weather_data.index, weather_data['temperature'], label='Temperature', linewidth=1, color='blue')
 plt.plot(rolling_mean.index, rolling_mean, label=f'{window}-day Rolling Mean', color='red', linewidth=2)
 plt.fill_between(
     rolling_mean.index,
@@ -187,18 +206,18 @@ plt.fill_between(
     alpha=0.2,
     label='95% Confidence Interval'
 )
-plt.scatter(anomalies.index, anomalies['temperature'], color='green', label='Anomalies', s=50)
+plt.scatter(anomalies.index, anomalies['temperature'], color='green', label='Anomalies', s=50, zorder=5)
 plt.title('Temperature Anomaly Detection')
+plt.xlabel('Date')
 plt.ylabel('Temperature (°C)')
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
+plt.savefig('07_anomaly_detection.png', dpi=300, bbox_inches='tight')
+plt.close()
 print("Created anomaly detection visualization.")
 
-# 8. Interactive visualization simulation (in a real classroom, you'd use Plotly, Bokeh, or similar)
-# Here we'll simulate the concept with a technique to enhance standard Matplotlib
-
-# Create an "interactive" time series by highlighting selections
+# 8. Interactive visualization simulation (highlighting seasons)
 fig, ax = plt.subplots(figsize=(14, 7))
 
 # Plot the full data
@@ -212,12 +231,15 @@ ax.plot(summer.index, summer['temperature'], color='red', linewidth=2, label='Su
 winter = weather_data[(weather_data.index.month == 12) | (weather_data.index.month <= 2)]
 ax.plot(winter.index, winter['temperature'], color='blue', linewidth=2, label='Winter')
 
-plt.title('Interactive Time Series Visualization (Simulated)')
+plt.title('Seasonal Highlighting - Summer vs Winter Temperatures')
+plt.xlabel('Date')
 plt.ylabel('Temperature (°C)')
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-print("Created simulated interactive visualization highlighting seasons.")
+plt.savefig('08_seasonal_highlighting.png', dpi=300, bbox_inches='tight')
+plt.close()
+print("Created seasonal highlighting visualization.")
 
 # 9. Create a polar plot to show seasonal patterns in a circular layout
 monthly_avg = weather_data.groupby('month')['temperature'].mean()
@@ -229,22 +251,30 @@ theta = list(theta) + [0]  # Close the loop
 
 plt.figure(figsize=(10, 10))
 ax = plt.subplot(111, projection='polar')
-ax.plot(theta, r, linewidth=2, marker='o')
-ax.fill(theta, r, alpha=0.25)
+ax.plot(theta, r, linewidth=3, marker='o', markersize=8, color='red')
+ax.fill(theta, r, alpha=0.25, color='red')
 ax.set_xticks(theta[:-1])
 ax.set_xticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
                     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
-ax.set_title('Annual Temperature Cycle', y=1.1)
+ax.set_title('Annual Temperature Cycle', y=1.1, fontsize=16)
+ax.grid(True)
 plt.tight_layout()
+plt.savefig('09_polar_temperature_cycle.png', dpi=300, bbox_inches='tight')
+plt.close()
 print("Created polar plot showing annual temperature cycle.")
 
-# In a classroom, you would save the figures with:
-plt.savefig('weather_visualizations.png')
-# And for interactive display:
-# plt.show()
-
 print("\nCompleted all visualizations!")
-print("In a real classroom setting, you would also demonstrate interactive tools like:")
+print("Generated files:")
+print("- 01_basic_temperature_plot.png")
+print("- 02_multiple_variables.png")
+print("- 03_monthly_boxplot.png")
+print("- 04_dual_axis_plot.png")
+print("- 05_correlation_heatmap.png")
+print("- 06_seasonal_pattern.png")
+print("- 07_anomaly_detection.png")
+print("- 08_seasonal_highlighting.png")
+print("- 09_polar_temperature_cycle.png")
+print("\nIn a real classroom setting, you would also demonstrate interactive tools like:")
 print("- Plotly for interactive time series plots")
 print("- Bokeh for interactive dashboards")
 print("- Matplotlib widgets for interactive exploration")
