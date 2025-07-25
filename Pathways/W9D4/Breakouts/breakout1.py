@@ -43,14 +43,14 @@ def create_polynomial_features(dataframe):
         DataFrame with added polynomial features
     """
     df_poly = dataframe.copy()
-    
-    # Your code here:
+ 
     # 1. Create squared features (feature1^2, feature2^2)
-    
+    df_poly['feature1_squared'] = df_poly['feature1'] ** 2
+    df_poly['feature2_squared'] = df_poly['feature2'] ** 2
     # 2. Create cubic features (feature1^3, feature2^3)
-    
+    df_poly['feature1_cubed']   = df_poly['feature1'] ** 3
+    df_poly['feature2_cubed']   = df_poly['feature2'] ** 3
     return df_poly
-
 # TODO: Function to create interaction features
 def create_interaction_features(dataframe):
     """
@@ -66,7 +66,7 @@ def create_interaction_features(dataframe):
     
     # Your code here:
     # Create feature interactions (e.g., feature1 * feature2)
-    
+    df_interact['feature1_x_feature2'] = df_interact['feature1'] * df_interact['feature2']
     return df_interact
 
 # Combine all features
@@ -114,7 +114,32 @@ def visualize_features(original_df, enhanced_df):
     # axes[0, 1].set_title('Enhanced Features: feature1_squared vs feature2')
     # axes[0, 1].set_xlabel('feature1_squared')
     # axes[0, 1].set_ylabel('feature2')
+   # 2) Squared vs. original
+    axes[0, 1].scatter(
+        enhanced_df['feature1_squared'], enhanced_df['feature2'],
+        c=enhanced_df['target'], cmap='viridis', alpha=0.6
+    )
+    axes[0, 1].set_title('Squared vs Original: f1² vs f2')
+    axes[0, 1].set_xlabel('feature1_squared')
+    axes[0, 1].set_ylabel('feature2')
     
+    # 3) Interaction feature
+    axes[1, 0].scatter(
+        enhanced_df['feature1_x_feature2'], enhanced_df['feature2'],
+        c=enhanced_df['target'], cmap='viridis', alpha=0.6
+    )
+    axes[1, 0].set_title('Interaction: f1 × f2 vs f2')
+    axes[1, 0].set_xlabel('feature1_x_feature2')
+    axes[1, 0].set_ylabel('feature2')
+    
+    # 4) Cubic vs Squared
+    axes[1, 1].scatter(
+        enhanced_df['feature1_cubed'], enhanced_df['feature1_squared'],
+        c=enhanced_df['target'], cmap='viridis', alpha=0.6
+    )
+    axes[1, 1].set_title('Cubic vs Squared: f1³ vs f1²')
+    axes[1, 1].set_xlabel('feature1_cubed')
+    axes[1, 1].set_ylabel('feature1_squared') 
     plt.tight_layout()
     plt.savefig('polynomial_features_visualization.png')
     plt.show()
@@ -129,12 +154,13 @@ def analyze_feature_importance(enhanced_df):
     """
     # Your code here:
     # 1. Calculate correlation of all features with target
-    
-    # 2. Sort correlations in descending order
-    
-    # 3. Display the top features
-    
-    pass
+corr_matrix = enhanced_df.corr()
+# 2. Sort correlations in descending order
+target_corr = corr_matrix['target'].drop('target').abs().sort_values(ascending=False) 
+# 3. Display the top features
+print("Features ranked by |correlation| with target:")
+print(target_corr.to_frame(name='|corr|').head(10))  # show top 10
+# pass
 
 # Feature importance analysis
 analyze_feature_importance(enhanced_df)
@@ -155,7 +181,9 @@ def create_custom_feature(dataframe):
     # Your code here:
     # Create a custom feature that you think might be useful
     # For example: distance from origin, angle, or another transformation
-    
+    df_custom['distance_from_origin'] = np.sqrt(
+        df_custom['feature1']**2 + df_custom['feature2']**2
+    ) 
     return df_custom
 
 # Apply your custom feature
